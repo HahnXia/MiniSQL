@@ -1,0 +1,60 @@
+create table student (
+		sno char(8),
+		sname char(16) unique,
+		sage int,
+		sgender char (1),
+		primary key ( sno )
+);
+
+create index stunameidx on student ( sname );
+
+drop table student;
+
+drop index stunameidx;
+
+delete from student;
+
+delete from student where sno = a;
+
+delete from student where sno = '2';
+
+select sgender from student where sno = '2';
+
+select * from student;
+
+select * from student where sage > 22 and sage <= 23;
+
+
+select sno from student;
+
+select * from student where sno = 12345678;
+
+select * from student where sno = '1' and sage >= 18 and sgender = M;
+
+insert into student values ('12345678','wy',22,'M');
+
+insert into student values ('1','wy1',22,'M');
+
+insert into student values ('2','wy2',22,'M');
+
+insert into student values ('3','wy3',22,'M');
+
+insert into student values ('4','wy4',22,'M');
+
+insert into student values ('5','wy5',aa,'M');  ***错误代码 aa不是int
+
+insert into student values ('7','wy55',23,'M');
+
+insert into student values ('8','wy66',24,'M');
+
+insert into student values ('1','wy1',22,'M'); *** 主键重复
+
+insert into student values ('2','wy2',22,'M'); *** 主键重复
+
+insert into student values ('2','wy333',22,'M'); *** 主键重复
+
+select * from author;
+
+execfile test.txt;
+
+execfile test1.txt;

@@ -1,0 +1,10 @@
+MiniSQL
+
+1 概述
+该MiniSQL程序主要实现了一个简单的数据库系统，实现了关系数据库的建表、查询、删除、索引等基本功能，同时还实现了缓存管理、b+树索引的建立等支持。整个系统主要由Interpreter、API、Catalog Manager、Record Manager、Index Manager、Buffer Manager6个部分组成。
+直接打开MiniSQL.exe文件便可以进入命令行下的MiniSQL系统，生成的数据文件会保存在和可执行文件相同的路径下。
+整个工程用c++编写，采用的编程环境为VS2013
+测试的环境为Windows 7 64位操作系统，Inter Core i7-4700MQ 2.40GHz CPU，8G内存2 语法说明MiniSQL支持标准的SQL语句格式，每一条SQL语句以分号结尾，一条SQL语句可写在一行或多行。所有的关键字都要求为小写。
+2.1 创建表语句该语句的语法如下：create table 表名 (	列名 类型 ,	列名 类型 ,		列名 类型 ,	primary key ( 列名 ));其中类型包括三种基本数据类型：int，char(n)，float，其中char(n)满足 1 <= n <= 255 。若该语句执行成功，则输出执行成功信息；若失败，会返回失败的原因。
+同时支持unique的申明。示例语句：create table student (		sno char(8),		sname char(16) unique,		sage int,		sgender char (1),		primary key ( sno ));2.2 删除表语句该语句的语法如下：drop table 表名 ;若该语句执行成功，则输出执行成功信息；若失败，返回失败的原因。示例语句：drop table student;2.3 创建索引语句该语句的语法如下：create index 索引名 on 表名 ( 列名 );若该语句执行成功，则输出执行成功信息；若失败，返回失败的原因。示例语句：create index stunameidx on student ( sname );2.4 删除索引语句该语句的语法如下：drop index 索引名 ;若该语句执行成功，则输出执行成功信息；若失败，返回失败的原因。示例语句：drop index stunameidx;2.5 选择语句该语句的语法如下：select * from 表名 ;或：select * from 表名 where 条件 ;其中“条件”具有以下格式：列 op 值 and 列 op 值 … and 列 op 值。op是算术比较符：包括了=、<>、<、>、<=、>=若该语句执行成功且查询结果不为空，则按行输出查询结果，若失败，返回失败的原因。示例语句：select * from student;select * from student where sno = ‘88888888’;select * from student where sage > 20 and sgender = ‘F’;2.5 插入记录语句该语句的语法如下：insert into 表名 values ( 值1 , 值2 , … , 值n );若该语句执行成功，则输出执行成功信息；若失败，返回失败的原因。示例语句：insert into student values (‘12345678’,’wy’,22,’M’);2.6 删除记录语句该语句的语法如下：delete from 表名 ;或：delete from 表名 where 条件 ;若该语句执行成功，则输出执行成功信息，其中包括删除的记录数；若失败，返回失败的原因。示例语句：delete from student;delete from student where sno = ‘88888888’;2.7 退出MiniSQL系统语句该语句的语法如下：quit;
+2.8 执行SQL脚本文件语句该语句的语法如下：execfile 文件名 ;SQL脚本文件中可以包含任意多条上述8种SQL语句，MiniSQL系统读入该文件，然后按序依次逐条执行脚本中的SQL语句。

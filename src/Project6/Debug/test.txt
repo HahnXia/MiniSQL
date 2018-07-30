@@ -1,0 +1,17 @@
+create table student (
+		sno char(8),
+		sname char(16) unique,
+		sage int,
+		sgender char (1),
+		primary key ( sno )
+);
+
+
+insert into student values ('12345678','wy',22,'M');
+
+insert into student values ('1','wyx',17,'M');
+
+insert into student values ('2','wy2',22,'M');
+
+select * from student;
+
